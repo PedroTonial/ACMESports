@@ -43,7 +43,7 @@ public class Atleta {
 
 	@Override
 	public String toString (){
-		return  "Numero: " + getNumero() + " Nome: " + getNome() + " País: " + getPais();
+		return  getNumero() + ", " + getNome() + ", " + getPais();
 	}
 }
 

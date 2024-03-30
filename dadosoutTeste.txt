@@ -1,4 +1,3 @@
-Atleta cadastrado com Sucesso!
-Numero: 11 Nome: Maria da Silva País: Brasil
-Medalha cadastrada com Sucesso!
-Medalha{codigo=111, tipo=1, individual=true, modalidade=Salto em altura}
+1: 11, Maria da Silva, Brasil
+2: 111, 1, true, Salto em altura
+3: 111, 11

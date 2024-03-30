@@ -21,7 +21,6 @@ public class Medalha {
 	}
 
 	public void adicionaAtleta(Atleta atleta) {
-
 		this.atleta.add(atleta);
 	}
 
@@ -39,11 +38,9 @@ public class Medalha {
 
 	@Override
 	public String toString() {
-		return "Medalha{" +
-				"codigo=" + codigo +
-				", tipo=" + tipo +
-				", individual=" + individual +
-				", modalidade=" + modalidade +
-				'}';
+		return  codigo +
+				", " + tipo +
+				", " + individual +
+				", " + modalidade;
 	}
 }
