@@ -30,10 +30,9 @@ public class Medalheiro {
 		for (Medalha m : medalha) {
 			if (m.getModalidade().equals(modalidade)){
 				medalhasEncontradas.add(m);
-				return medalhasEncontradas;
 			}
 		}
-		return null;
+		return medalhasEncontradas;
 	}
 
 	/* @Override
@@ -41,5 +40,5 @@ public class Medalheiro {
 		return "Medalheiro{" +
 				"medalha=" + medalha +
 				'}';
-	}*/
+	}*/ //toString pra testas na ACME se as medalhas estavam sendo cadastradas corretamente
 }

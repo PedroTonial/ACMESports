@@ -36,6 +36,10 @@ public class Medalha {
 		return modalidade;
 	}
 
+	public ArrayList<Atleta> getAtleta() {
+		return atleta;
+	}
+
 	@Override
 	public String toString() {
 		return  codigo +

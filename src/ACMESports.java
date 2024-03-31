@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -33,7 +34,9 @@ public class ACMESports {
         consultaAtletaNumero();
         consultaAtletaNome();
         consultaMedalhaCodigo();
-        //consultaAtletaPais();
+        consultarPais();
+        consultaAtletasPorTipoMedalha();
+        consultaAtletaPorModalidadeMedalha();
 
     }
 
@@ -112,13 +115,47 @@ public class ACMESports {
         }
     }
 
+    private void consultarPais(){ //7
+        entrada.nextLine();
+        String paisConsultado = entrada.nextLine();
+        ArrayList <Atleta> atletasEncontrados = plantel.consultaAtletaPais(paisConsultado);
+        System.out.println("7: " + atletasEncontrados);
+    }
+
+    private void consultaAtletasPorTipoMedalha(){ //8
+        int tipo = entrada.nextInt();
+        entrada.nextLine();
+        if (!plantel.consultaAtletaPorTipoMedalha(tipo).isEmpty()) {
+            System.out.println("8: " + plantel.consultaAtletaPorTipoMedalha(tipo));
+        } else {
+            System.out.println("Nenhum atleta encontrado");
+        }
+    }
+
+    private void consultaAtletaPorModalidadeMedalha(){ //9
+        String modalidade = entrada.nextLine();
+        //AQUI É O SEGUINTE - Eu pesquiso pela MEDALHA, e vejo se DENTRO DA MEDALHA tem ATLETAS
+        //Verifico aqui na ACME o que o isEmpty() retorna e continuo a logica
+        //a consulta no plantel ta errada mas ta funcionando azar - é bom refazer o 8 tbm
+
+
+
+
+        /*if (plantel.consultaAtletaPorModalidadeMedalha(modalidade) != null) {
+            System.out.println("9: " + plantel.consultaAtletaPorModalidadeMedalha(modalidade));
+        } else {
+            System.out.println("Nenhum atleta encontrado");
+        }*/
+    }
 
 
 
 
 
 
-    
+
+
+
 
 
 

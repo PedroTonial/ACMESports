@@ -29,6 +29,7 @@ public class Atleta {
 		return countMedalhas;
 	}
 
+
 	public String getPais() {
 		return pais;
 	}
@@ -39,6 +40,10 @@ public class Atleta {
 
 	public String getNome() {
 		return nome;
+	}
+
+	public ArrayList<Medalha> getMedalha() {
+		return medalha;
 	}
 
 	@Override
