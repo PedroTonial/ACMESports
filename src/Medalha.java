@@ -42,5 +42,8 @@ public class Medalha {
 				", " + tipo +
 				", " + individual +
 				", " + modalidade;
+				/*", " + atleta*/
+
 	}
+
 }

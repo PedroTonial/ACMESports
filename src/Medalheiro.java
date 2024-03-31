@@ -36,4 +36,10 @@ public class Medalheiro {
 		return null;
 	}
 
+	/* @Override
+	public String toString() {
+		return "Medalheiro{" +
+				"medalha=" + medalha +
+				'}';
+	}*/
 }

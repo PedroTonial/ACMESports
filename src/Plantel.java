@@ -24,6 +24,16 @@ public class Plantel {
 		return null;
 	}
 
+	/*public Atleta consultaAtleta(String pais) {
+		for (Atleta a : atleta) {
+			if (a.getPais().equals(pais)){
+				return a;
+			}
+		}
+		return null;
+	}*/
+
+
 	public Atleta consultaAtleta(int numero) {
 		for (Atleta a : atleta) {
 			if (a.getNumero() == numero) {
@@ -33,4 +43,10 @@ public class Plantel {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "Plantel{" +
+				"atleta=" + atleta +
+				'}';
+	}
 }
