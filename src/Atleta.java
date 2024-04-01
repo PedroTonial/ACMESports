@@ -22,7 +22,6 @@ public class Atleta {
 	}
 
 	public int consultaQuantidadeMedalhas() {
-
 		for (Medalha m : medalha) {
 			for (Atleta a : m.getAtleta())
 				countMedalhasAtleta++;

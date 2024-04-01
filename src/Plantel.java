@@ -42,11 +42,16 @@ public class Plantel {
 		}
 		return atletasEncontrados;
 	}
-	
-	@Override
-	public String toString() {
-		return "Plantel{" +
-				"atleta=" + atleta +
-				'}';
+	public Atleta atletaVencedor(){ //10
+		Atleta atletaVencedor=null;
+		for (int i = 0; i < atleta.size(); i++) {
+			Atleta a = atleta.get(i);
+			//Atleta b = atleta.get(i+1);
+
+			if (atletaVencedor == null || a.consultaQuantidadeMedalhas() > atletaVencedor.consultaQuantidadeMedalhas()){
+				atletaVencedor = a;
+			}
+		}
+		return atletaVencedor;
 	}
 }

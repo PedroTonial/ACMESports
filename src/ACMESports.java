@@ -8,13 +8,13 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class ACMESports {
-    private Scanner entrada = new Scanner(System.in);  // Atributo para entrada de dados
+    private Scanner entrada = new Scanner(System.in);
 
-    private PrintStream saidaPadrao = System.out;   // Guarda a saida padrao - tela (console)
+    private PrintStream saidaPadrao = System.out;
 
-    private final String nomeArquivoEntrada = "dadosin.txt";  // Nome do arquivo de entrada de dados
+    private final String nomeArquivoEntrada = "dadosin.txt";
 
-    private final String nomeArquivoSaida = "dadosoutTeste.txt";
+    private final String nomeArquivoSaida = "dadosout.txt";
 
     private Medalheiro medalheiro;
 
@@ -37,7 +37,7 @@ public class ACMESports {
         consultarPais();
         consultaAtletasPorTipoMedalha();
         consultaAtletaPorModalidadeMedalha();
-
+        atletaVencedor();
     }
 
     private void cadastrarAtleta() { //1
@@ -51,8 +51,8 @@ public class ACMESports {
             String pais = entrada.nextLine();
             Atleta novoAtleta = new Atleta(numero, nome, pais);
             plantel.cadastraAtleta(novoAtleta);
-            System.out.println("1: "+ novoAtleta);
-           // System.out.println(plantel); // só pra testar o que ta sendo cadastrado
+            System.out.println("1: " + novoAtleta);
+            // System.out.println(plantel); // só pra testar o que ta sendo cadastrado
         }
     }
 
@@ -76,53 +76,56 @@ public class ACMESports {
     private void cadastroMutuo() { //3
         while (true) {
             int codigo = entrada.nextInt();
-            if (codigo == -1){
+            if (codigo == -1) {
                 break;
             }
             int numero = entrada.nextInt();
             // if (plantel.consultaAtleta(numero) != null && medalheiro.consultaMedalha(codigo) != null)
-                Atleta atletaEncontrado = plantel.consultaAtleta(numero);
-                Medalha medalhaEncontrada = medalheiro.consultaMedalha(codigo);
-                medalhaEncontrada.adicionaAtleta(atletaEncontrado);
-                atletaEncontrado.adicionaMedalha(medalhaEncontrada);
-                System.out.println("3: " + medalhaEncontrada.getCodigo() + ", " + atletaEncontrado.getNumero());
+            //ainda to em duvida sobre essa verificação
+            Atleta atletaEncontrado = plantel.consultaAtleta(numero);
+            Medalha medalhaEncontrada = medalheiro.consultaMedalha(codigo);
+            medalhaEncontrada.adicionaAtleta(atletaEncontrado);
+            atletaEncontrado.adicionaMedalha(medalhaEncontrada);
+            System.out.println("3: " + medalhaEncontrada.getCodigo() + ", " + atletaEncontrado.getNumero());
         }
     }
-     private void consultaAtletaNumero(){ //4
+
+    private void consultaAtletaNumero() { //4
         int atletaConsultado = entrada.nextInt();
-        if (plantel.consultaAtleta(atletaConsultado)!= null){
+        if (plantel.consultaAtleta(atletaConsultado) != null) {
             System.out.println("4: " + plantel.consultaAtleta(atletaConsultado));
         } else {
             System.out.println("4:Nenhum atleta encontrado.");
         }
-     }
-    private void consultaAtletaNome(){ //5
+    }
+
+    private void consultaAtletaNome() { //5
         entrada.nextLine();
         String atletaConsultado = entrada.nextLine();
-        if (plantel.consultaAtleta(atletaConsultado)!= null){
+        if (plantel.consultaAtleta(atletaConsultado) != null) {
             System.out.println("5: " + plantel.consultaAtleta(atletaConsultado));
         } else {
             System.out.println("5:Nenhum atleta encontrado.");
         }
     }
 
-    private void consultaMedalhaCodigo(){ //6
+    private void consultaMedalhaCodigo() { //6
         int medalhaConsultada = entrada.nextInt();
-        if (medalheiro.consultaMedalha(medalhaConsultada)!= null){
+        if (medalheiro.consultaMedalha(medalhaConsultada) != null) {
             System.out.println("6: " + medalheiro.consultaMedalha(medalhaConsultada));
         } else {
             System.out.println("6:Nenhuma medalha encontrada.");
         }
     }
 
-    private void consultarPais(){ //7
+    private void consultarPais() { //7
         entrada.nextLine();
         String paisConsultado = entrada.nextLine();
-        ArrayList <Atleta> atletasEncontrados = plantel.consultaAtletaPais(paisConsultado);
+        ArrayList<Atleta> atletasEncontrados = plantel.consultaAtletaPais(paisConsultado);
         System.out.println("7: " + atletasEncontrados);
     }
 
-    private void consultaAtletasPorTipoMedalha(){ //8
+    private void consultaAtletasPorTipoMedalha() { //8
         int tipo = entrada.nextInt();
         entrada.nextLine();
         if (!medalheiro.consultarMedalhas(tipo).isEmpty()) {
@@ -131,7 +134,7 @@ public class ACMESports {
                     System.out.println("8:Sem atletas com medalha.");
                 } else {
                     for (Atleta a : m.getAtleta()) {
-                        System.out.println("8: " + a.getNumero() +"," + a.getNome() +", "+ a.getPais());
+                        System.out.println("8: " + a.getNumero() + "," + a.getNome() + ", " + a.getPais());
                     }
                 }
             }
@@ -140,7 +143,7 @@ public class ACMESports {
         }
     }
 
-    private void consultaAtletaPorModalidadeMedalha() {
+    private void consultaAtletaPorModalidadeMedalha() { //9
         String modalidade = entrada.nextLine();
         ArrayList<Medalha> medalhasEncontradas = medalheiro.consultarMedalhas(modalidade);
         if (medalhasEncontradas.isEmpty()) {
@@ -158,16 +161,35 @@ public class ACMESports {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
+    private void atletaVencedor() { //10
+        Atleta vencedor = plantel.atletaVencedor();
+        ArrayList<Medalha> medalhasDoVencedor = vencedor.getMedalha();
+        int ouro = 0;
+        int prata = 0;
+        int bronze = 0;
+        for (Medalha m : medalhasDoVencedor) {
+            switch (m.getTipo()) {
+                case 1:
+                    if (m.getTipo() == 1) {
+                        ouro++;
+                    }
+                    break;
+                case 2:
+                    if (m.getTipo() == 2) {
+                        prata++;
+                    }
+                    break;
+                case 3:
+                    if (m.getTipo() == 3) {
+                        bronze++;
+                    }
+                    break;
+            }
+        }
+        System.out.println("10: " + vencedor.getNumero() + "," +
+                vencedor.getNome() +","+ vencedor.getPais() +","+
+                " Ouro: " + ouro + " Prata: " + prata + " Bronze: " + bronze);
+    }
 
 
     /*********************************************************************************
