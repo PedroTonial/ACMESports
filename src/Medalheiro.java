@@ -25,20 +25,26 @@ public class Medalheiro {
 		return null;
 	}
 
-	public ArrayList<Medalha> consultaMedalhas(String modalidade) {
+	public ArrayList<Medalha> consultarMedalhas(String modalidade) {
 		ArrayList<Medalha> medalhasEncontradas = new ArrayList<>();
+
 		for (Medalha m : medalha) {
-			if (m.getModalidade().equals(modalidade)){
+			if (m.getModalidade().equals(modalidade)) {
 				medalhasEncontradas.add(m);
 			}
 		}
 		return medalhasEncontradas;
 	}
 
-	/* @Override
-	public String toString() {
-		return "Medalheiro{" +
-				"medalha=" + medalha +
-				'}';
-	}*/ //toString pra testas na ACME se as medalhas estavam sendo cadastradas corretamente
+	public ArrayList<Medalha> consultarMedalhas(int tipo) {
+		ArrayList<Medalha> medalhasEncontradas = new ArrayList<>();
+
+		for (Medalha m : medalha) {
+			if (m.getTipo() == tipo) {
+				medalhasEncontradas.add(m);
+			}
+		}
+		return medalhasEncontradas;
+	}
 }
+

@@ -125,28 +125,39 @@ public class ACMESports {
     private void consultaAtletasPorTipoMedalha(){ //8
         int tipo = entrada.nextInt();
         entrada.nextLine();
-        if (!plantel.consultaAtletaPorTipoMedalha(tipo).isEmpty()) {
-            System.out.println("8: " + plantel.consultaAtletaPorTipoMedalha(tipo));
+        if (!medalheiro.consultarMedalhas(tipo).isEmpty()) {
+            for (Medalha m : medalheiro.consultarMedalhas(tipo)) {
+                if (m.getAtleta().isEmpty()) {
+                    System.out.println("8:Sem atletas com medalha.");
+                } else {
+                    for (Atleta a : m.getAtleta()) {
+                        System.out.println("8: " + a.getNumero() +"," + a.getNome() +", "+ a.getPais());
+                    }
+                }
+            }
         } else {
             System.out.println("Nenhum atleta encontrado");
         }
     }
 
-    private void consultaAtletaPorModalidadeMedalha(){ //9
+    private void consultaAtletaPorModalidadeMedalha() {
         String modalidade = entrada.nextLine();
-        //AQUI É O SEGUINTE - Eu pesquiso pela MEDALHA, e vejo se DENTRO DA MEDALHA tem ATLETAS
-        //Verifico aqui na ACME o que o isEmpty() retorna e continuo a logica
-        //a consulta no plantel ta errada mas ta funcionando azar - é bom refazer o 8 tbm
-
-
-
-
-        /*if (plantel.consultaAtletaPorModalidadeMedalha(modalidade) != null) {
-            System.out.println("9: " + plantel.consultaAtletaPorModalidadeMedalha(modalidade));
+        ArrayList<Medalha> medalhasEncontradas = medalheiro.consultarMedalhas(modalidade);
+        if (medalhasEncontradas.isEmpty()) {
+            System.out.println("9: Modalidade não encontrada.");
         } else {
-            System.out.println("Nenhum atleta encontrado");
-        }*/
+            for (Medalha m : medalhasEncontradas) {
+                if (m.getAtleta().isEmpty()) {
+                    System.out.println("9:" + m.getModalidade() + "," + m.getTipo() + ",Sem atletas com medalha.");
+                } else {
+                    for (Atleta a : m.getAtleta()) {
+                        System.out.println("9: " + m.getModalidade() + "," + m.getTipo() + "," + a.getNumero() + "," + a.getNome() + "," + a.getPais());
+                    }
+                }
+            }
+        }
     }
+
 
 
 

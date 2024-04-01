@@ -3,7 +3,7 @@ import java.util.Collection;
 public class Atleta {
 
 	private int numero;
-
+	private int countMedalhasAtleta =0;
 	private String nome;
 
 	private String pais;
@@ -22,13 +22,17 @@ public class Atleta {
 	}
 
 	public int consultaQuantidadeMedalhas() {
-		int countMedalhas = 0;
+
 		for (Medalha m : medalha) {
-			countMedalhas++;
+			for (Atleta a : m.getAtleta())
+				countMedalhasAtleta++;
 		}
-		return countMedalhas;
+		return countMedalhasAtleta;
 	}
 
+	public int getCountMedalhasAtleta() {
+		return countMedalhasAtleta;
+	}
 
 	public String getPais() {
 		return pais;

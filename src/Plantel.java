@@ -42,31 +42,7 @@ public class Plantel {
 		}
 		return atletasEncontrados;
 	}
-
-	public ArrayList<Atleta> consultaAtletaPorTipoMedalha(int tipo){
-		ArrayList <Atleta> atletasEncontrados = new ArrayList<>();
-		for (Atleta a : atleta) {
-			for (Medalha m : a.getMedalha()) {
-				if (m.getTipo()== tipo){
-					atletasEncontrados.add(a);
-				}
-			}
-		}
-		return atletasEncontrados;
-	}
-
-	public ArrayList<Atleta> consultaAtletaPorModalidadeMedalha(String modalidade){
-		ArrayList <Atleta> atletasEncontrados = new ArrayList<>();
-		for (Atleta a : atleta) {
-			for (Medalha m : a.getMedalha()) {
-				if (m.getModalidade().equals(modalidade)){
-					atletasEncontrados.add(a);
-				}
-			}
-		}
-		return atletasEncontrados;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Plantel{" +
