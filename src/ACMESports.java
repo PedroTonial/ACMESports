@@ -80,13 +80,13 @@ public class ACMESports {
                 break;
             }
             int numero = entrada.nextInt();
-            // if (plantel.consultaAtleta(numero) != null && medalheiro.consultaMedalha(codigo) != null)
-            //ainda to em duvida sobre essa verificação
-            Atleta atletaEncontrado = plantel.consultaAtleta(numero);
-            Medalha medalhaEncontrada = medalheiro.consultaMedalha(codigo);
-            medalhaEncontrada.adicionaAtleta(atletaEncontrado);
-            atletaEncontrado.adicionaMedalha(medalhaEncontrada);
-            System.out.println("3: " + medalhaEncontrada.getCodigo() + ", " + atletaEncontrado.getNumero());
+            if (plantel.consultaAtleta(numero) != null && medalheiro.consultaMedalha(codigo) != null) {
+                Atleta atletaEncontrado = plantel.consultaAtleta(numero);
+                Medalha medalhaEncontrada = medalheiro.consultaMedalha(codigo);
+                medalhaEncontrada.adicionaAtleta(atletaEncontrado);
+                atletaEncontrado.adicionaMedalha(medalhaEncontrada);
+                System.out.println("3: " + medalhaEncontrada.getCodigo() + ", " + atletaEncontrado.getNumero());
+            }
         }
     }
 
@@ -122,7 +122,14 @@ public class ACMESports {
         entrada.nextLine();
         String paisConsultado = entrada.nextLine();
         ArrayList<Atleta> atletasEncontrados = plantel.consultaAtletaPais(paisConsultado);
-        System.out.println("7: " + atletasEncontrados);
+        if (atletasEncontrados.isEmpty()) {
+            System.out.println("7: Pais não encontrado");
+        } else {
+            for (Atleta a : atletasEncontrados) {
+                System.out.println("7: " + a.getNumero() + "," + a.getNome() + "," + a.getPais());
+            }
+        }
+
     }
 
     private void consultaAtletasPorTipoMedalha() { //8
@@ -139,7 +146,7 @@ public class ACMESports {
                 }
             }
         } else {
-            System.out.println("Nenhum atleta encontrado");
+            System.out.println("8: Nenhum atleta encontrado");
         }
     }
 
@@ -187,7 +194,7 @@ public class ACMESports {
             }
         }
         System.out.println("10: " + vencedor.getNumero() + "," +
-                vencedor.getNome() +","+ vencedor.getPais() +","+
+                vencedor.getNome() + "," + vencedor.getPais() + "," +
                 " Ouro: " + ouro + " Prata: " + prata + " Bronze: " + bronze);
     }
 
